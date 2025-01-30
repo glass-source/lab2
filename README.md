@@ -45,8 +45,8 @@ En las versiones modernas de Mongoose, `useNewUrlParser` y `useUnifiedTopology` 
 mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log("✅ Conectado a MongoDB"))
 .catch((err) => console.error("❌ Error de conexión:", err));
-
-### 2. Error al crear usuarios duplicados
+```
+### 3. Error al crear usuarios duplicados
 
 Al intentar crear un usuario con un nombre en uso se genera un error
 
@@ -59,7 +59,7 @@ Lo solucionamos verificando que el usuario no este registrado
     const user = await User.findOne({ username: req.body.username });
     if (user) return res.status(409).json({ message: "Ese nombre de usuario ya esta en uso." });
     ```
-### 3. Sanitar el inicio de sesion
+### 4. Sanitar el inicio de sesion
 
 Al iniciar sesion, se le indicaba al usuario cuando el usuario o contraseña fuesen incorrectos de manera individual
 
