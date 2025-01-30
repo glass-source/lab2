@@ -1,3 +1,9 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 :root {
     --primary-color: #2563eb;
     --success-color: #10b981;
@@ -25,12 +31,24 @@ body {
     width: 100%;
     max-width: 500px;
     margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 1.25rem;
 }
 
 .form-toggle {
     display: flex;
     gap: 1rem;
     margin-bottom: 1.5rem;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 1.5rem;
 }
 
 .toggle-btn {
@@ -82,7 +100,8 @@ label {
 
 input {
     width: 100%;
-    padding: 0.75rem;
+    padding: 0.75rem 1rem;
+    margin: 0;
     border: 2px solid #e2e8f0;
     border-radius: 8px;
     font-size: 1rem;
@@ -107,6 +126,11 @@ input:focus {
     cursor: pointer;
     transition: background-color 0.2s;
     margin-top: 1rem;
+    width: 100%;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 .submit-btn:hover {
@@ -114,6 +138,9 @@ input:focus {
 }
 
 .token-section {
+    width: 100%;
+    max-width: 400px;
+    margin: 2rem auto 0;
     margin-top: 2rem;
     padding-top: 2rem;
     border-top: 2px solid #e2e8f0;
@@ -135,6 +162,10 @@ input:focus {
     cursor: pointer;
     margin-top: 0.5rem;
     transition: background-color 0.2s;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 .copy-btn:hover {
@@ -178,6 +209,11 @@ input:focus {
     -moz-transition: background-color 0.2s;
     -ms-transition: background-color 0.2s;
     -o-transition: background-color 0.2s;
+    width: 100%;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 .verify-btn:hover {
