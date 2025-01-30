@@ -8,7 +8,7 @@ const router = express.Router();
 // Registro de usuario
 router.post("/register", async (req, res) => {
     const user = await User.findOne({ username: req.body.username });
-    if (user) return res.status(400).json({ message: "Ese nombre de usuario ya esta en uso." });
+    if (user) return res.status(409).json({ message: "Ese nombre de usuario ya esta en uso." });
 
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
