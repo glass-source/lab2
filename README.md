@@ -55,10 +55,10 @@ E11000 duplicate key error collection: test.users index: username_1 dup key: { u
 ```
 
 Lo solucionamos verificando que el usuario no este registrado
-    ```js
+```js
     const user = await User.findOne({ username: req.body.username });
     if (user) return res.status(409).json({ message: "Ese nombre de usuario ya esta en uso." });
-    ```
+```
 ### 4. Sanitar el inicio de sesion
 
 Al iniciar sesion, se le indicaba al usuario cuando el usuario o contraseña fuesen incorrectos de manera individual
