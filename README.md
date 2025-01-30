@@ -27,7 +27,7 @@ Este proyecto es parte del Thryve Bootcamp y corresponde al laboratorio 2.
     node server.js
     ```
 
-##Erores y mejoras realizadas
+## Erores y mejoras realizadas
 
 ### 1. Puerto para el servidor HTTPS
 
