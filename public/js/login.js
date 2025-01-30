@@ -4,11 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggleBtns = document.querySelectorAll('.toggle-btn');
     const tokenInput = document.getElementById('bearerToken');
     const copyTokenBtn = document.getElementById('copyTokenBtn');
-    const errorMessage = document.getElementById('errorMessage');
     const loading = document.getElementById('loading');
     const verifyTokenBtn = document.getElementById('verifyTokenBtn');
 
-    // Configuración de la API
+    // Configuración de los endpoints de la API
     const API_BASE_URL = 'https://localhost:3000/auth';
     const HEADERS = {
         'Content-Type': 'application/json',
@@ -20,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     async function verifyToken() {
-        clearMessages();
         loading.style.display = 'block';
         verifyTokenBtn.disabled = true;
 
@@ -38,16 +36,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            const data = await response.json();
+            if (response.status === 400) {
+                showTempMessage("Token invalido", 'error');
 
-            if (response.status === 401) {
-                throw new Error(data.message || 'Error de verificación');
+            }else if (response.status === 200) {
+                showTempMessage('Token verificado', 'success');
             }
 
-            showTempMessage('Token válido! Acceso concedido', 'success');
-
         } catch (error) {
-            showError(error.message);
+            showTempMessage(error.message, 'error');
         } finally {
             loading.style.display = 'none';
             verifyTokenBtn.disabled = false;
@@ -86,10 +83,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const confirmPassword = document.getElementById('confirmPassword').value.trim();
 
         if (password !== confirmPassword) {
-            showError('Las contraseñas no coinciden');
+            showTempMessage('Las contraseñas no coinciden', 'error');
             return;
         }
-
 
         await handleAuthRequest({
             username: document.getElementById('regUsername').value.trim(),
@@ -99,7 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Función principal de autenticación
     async function handleAuthRequest(data, endpoint) {
-        clearMessages();
         loading.style.display = 'block';
 
         try {
@@ -116,13 +111,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(responseData.message || `Error HTTPS! estado: ${response.status}`);
             }
 
-            tokenInput.value = responseData.token;
-            showTempMessage(
-                endpoint === 'login'
-                    ? '¡Inicio de sesión exitoso!'
-                    : '¡Cuenta creada correctamente!',
-                'success'
-            );
+            if (endpoint === 'login') {
+                tokenInput.value = responseData.token;
+                showTempMessage('¡Inicio de sesión exitoso!', 'success');
+            } else if (endpoint === 'register') {
+                showTempMessage('¡Cuenta creada correctamente!', 'success');
+            }
 
         } catch (error) {
             handleApiError(error);
@@ -135,6 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleApiError(error) {
         const errorMsg = error.message.includes('Failed to fetch') ? 'Error de conexión con el servidor'
         : error.message.replace('HTTPS error! ', '');
+
         showTempMessage(errorMsg, 'error');
     }
 
@@ -145,16 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
             showTempMessage('Token copiado al portapapeles', 'success');
         }
     });
-
-    // Helpers de UI
-    function clearMessages() {
-        errorMessage.style.display = 'none';
-    }
-
-    function showError(message) {
-        errorMessage.textContent = message;
-        errorMessage.style.display = 'block';
-    }
 
     // Variables para controlar el mensaje temporal
     let currentMessage = null;
@@ -180,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 msg.remove();
                 currentMessage = null;
-            }, 300); // Coincide con la duración de la transición
+            }, 3000);
         }, 3000);
     }
 });

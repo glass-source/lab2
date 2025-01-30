@@ -9,59 +9,58 @@
 <body>
     <div class="auth-container">
         <div class="form-toggle">
-            <button class="toggle-btn active" data-form="login">Login</button>
-            <button class="toggle-btn" data-form="register">Register</button>
+            <button class="toggle-btn active" data-form="login">Inicio de Sesion</button>
+            <button class="toggle-btn" data-form="register">Registrarse</button>
         </div>
 
         <!-- Login Form -->
         <form id="loginForm" class="auth-form active">
-            <h1>Existing User</h1>
+            <h1>Usuarios Activos</h1>
             
             <div class="form-group">
-                <label for="username">Username:</label>
+                <label for="username">Nombre de Usuario:</label>
                 <input type="text" id="username" required>
             </div>
             
             <div class="form-group">
-                <label for="password">Password:</label>
+                <label for="password">Contraseña:</label>
                 <input type="password" id="password" required>
             </div>
 
-            <button type="submit" class="submit-btn">Sign In</button>
+            <button type="submit" class="submit-btn">Iniciar Sesion</button>
         </form>
 
         <!-- Register Form -->
         <form id="registerForm" class="auth-form">
-            <h1>New User</h1>
+            <h1>Nuevos Usuarios</h1>
 
             <div class="form-group">
-                <label for="regUsername">Username:</label>
+                <label for="regUsername">Nombre de Usuario:</label>
                 <input type="text" id="regUsername" required>
             </div>
 
             <div class="form-group">
-                <label for="regPassword">Password:</label>
+                <label for="regPassword">Contraseña:</label>
                 <input type="password" id="regPassword" required>
             </div>
 
             <div class="form-group">
-                <label for="confirmPassword">Confirm Password:</label>
+                <label for="confirmPassword">Confirmar Contraseña:</label>
                 <input type="password" id="confirmPassword" required>
             </div>
 
-            <button type="submit" class="submit-btn">Create Account</button>
+            <button type="submit" class="submit-btn">Registrarse</button>
         </form>
 
         <!-- Token Section -->
         <div class="token-section">
-            <h2>API Token</h2>
+            <h2>Verificar JWT</h2>
             <div class="form-group">
                 <label for="bearerToken">Bearer Token:</label>
                 <input
-                    type="text" 
-                    id="bearerToken" 
-                    readonly
-                    placeholder="Your token will appear here after authentication"
+                    type="text"
+                    id="bearerToken"
+                    placeholder="Tu token aparecera aqui cuando inicies sesion."
                 >
             </div>
             <div class="token-actions">
@@ -70,8 +69,7 @@
             </div>
         </div>
 
-        <div id="errorMessage" class="error-message"></div>
-        <div id="loading" class="loading-indicator">Authenticating...</div>
+        <div id="loading" class="loading-indicator">Autenticando...</div>
     </div>
 
     <script src="/js/login.js"></script>
