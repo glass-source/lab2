@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Auth Test</title>
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="form-toggle">
+            <button class="toggle-btn active" data-form="login">Login</button>
+            <button class="toggle-btn" data-form="register">Register</button>
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm" class="auth-form active">
+            <h1>Existing User</h1>
+            
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+            </div>
+
+            <button type="submit" class="submit-btn">Sign In</button>
+        </form>
+
+        <!-- Register Form -->
+        <form id="registerForm" class="auth-form">
+            <h1>New User</h1>
+
+            <div class="form-group">
+                <label for="regUsername">Username:</label>
+                <input type="text" id="regUsername" required>
+            </div>
+
+            <div class="form-group">
+                <label for="regPassword">Password:</label>
+                <input type="password" id="regPassword" required>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" required>
+            </div>
+
+            <button type="submit" class="submit-btn">Create Account</button>
+        </form>
+
+        <!-- Token Section -->
+        <div class="token-section">
+            <h2>API Token</h2>
+            <div class="form-group">
+                <label for="bearerToken">Bearer Token:</label>
+                <input
+                    type="text" 
+                    id="bearerToken" 
+                    readonly
+                    placeholder="Your token will appear here after authentication"
+                >
+            </div>
+            <div class="token-actions">
+                <button id="copyTokenBtn" class="copy-btn">Copiar Token</button>
+                <button id="verifyTokenBtn" class="verify-btn">Verificar Token</button>
+            </div>
+        </div>
+
+        <div id="errorMessage" class="error-message"></div>
+        <div id="loading" class="loading-indicator">Authenticating...</div>
+    </div>
+
+    <script src="/js/login.js"></script>
+</body>
+</html>
